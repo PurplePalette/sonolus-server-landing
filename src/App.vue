@@ -89,7 +89,7 @@
                         <loading-display />
                     </template>
                     <template v-else-if="serverInfo">
-                        <template v-for="(item, index) in serverInfo[key]">
+                        <template v-for="(item, index) in serverInfo[key]['items']">
                             <level-card
                                 v-if="key === 'levels'"
                                 :key="index"
@@ -220,7 +220,7 @@ export default Vue.extend({
             if (this.serverInfoUrl) {
                 this.serverInfo = undefined
                 this.isServerInfoLoading = true
-                fetch(this.serverInfoUrl)
+                fetch("http://localhost:8000/info")
                     .then((response) => response.json())
                     .then((info) => (this.serverInfo = info))
                     .finally(() => (this.isServerInfoLoading = false))
